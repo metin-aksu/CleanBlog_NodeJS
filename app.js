@@ -20,22 +20,26 @@ app.get("/about", (reg, res) => {
   res.render("about");
 });
 
-app.get("/post/:id", (reg, res) => {
-  res.render("post");
+app.get("/post/:id", async (req, res) => {
+  const blog = await Blog.findById(req.params.id);
+  // res.render('post', { post: blog })
+  res.render("post",{ blog });
 });
 
 app.get("/newpost", (reg, res) => {
   res.render("newpost");
 });
 
-app.post("/addpost",async (reg, res) => {
+app.post("/addpost", async (reg, res) => {
   const newblog = new Blog(reg.body);
   await Blog.create(newblog);
   res.redirect("/");
 });
 
 app.get("*", (reg, res) => {
-  res.send("<br><br><center><h1>404 kere bu yanlışlıkta bir iş var.</h1></center>");
+  res.send(
+    "<br><br><center><h1>404 kere bu yanlışlıkta bir iş var.</h1></center>"
+  );
 });
 
 const port = 3000;
