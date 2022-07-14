@@ -12,7 +12,8 @@ app.use(express.json());
 
 const __dirname = path.resolve();
 
-mongoose.connect("mongodb://localhost/blogDB", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost/blogDB", { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://cleanblog:12345@cluster0.ilt1a.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true });
 
 app.get("/", async (reg, res) => {
   const blogs = await Blog.find().sort({ createdAt: -1 });
