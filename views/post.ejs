@@ -25,7 +25,13 @@
           <p>
             <%= blog.content %>
           </p>
+          <br>
+          <br>
+          <div align="center">
+            <button onclick="location.href='/editpost/<%= blog._id %>';">EDIT POST</button> 
+            <button onclick="if (confirm('Bu blogu silmek istediğinizden emin misiniz.')) {location.href='/deletepost/<%= blog._id %>';}">DELETE POST</button></div>
         </div>
+        
       </div>
     </div>
   </article>
